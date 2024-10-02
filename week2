@@ -1,0 +1,74 @@
+interface Counter {
+
+    int CountWords(String Sentence); //Counts the words in a sentence using " " delimiter
+    int CountLetters(String Sentence); //Counts the ammount of letters in a sentence using
+    int getlength(String Sentence); //gets the length of the entire sentence including white space
+
+}
+
+
+public class WordProcessor implements Counter {
+private String FallBackText;
+
+    public String getFallBackText() {
+        return FallBackText;
+    }
+
+    public void setFallBackText(String fallBackText) {
+        this.FallBackText = fallBackText;
+    }
+
+
+    @Override
+    public int CountWords(String Sentence) {
+        if (Sentence == null || Sentence.isEmpty()) {
+            Sentence = this.FallBackText;
+        };
+
+        String[] word = Sentence.split(" ");
+        return word.length;
+    }
+
+    @Override
+    public int CountLetters(String Sentence) {
+        if (Sentence == null || Sentence.isEmpty()) {
+            Sentence = this.FallBackText;
+        };
+
+        int letters = 0;
+        for(int i = 0; i < Sentence.length(); i++) {
+            if(Character.isLetter(Sentence.charAt(i))) {
+                letters++;
+            }
+        }
+        return letters;
+    }
+
+    @Override
+    public int getlength(String Sentence) {
+        if (Sentence == null || Sentence.isEmpty()) {
+            Sentence = this.FallBackText;
+        };
+
+        return Sentence.length();
+    }
+}
+
+
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        WordProcessor WP = new WordProcessor();
+        WP.setFallBackText("this is the default entry");
+        Scanner Scanner = new Scanner(System.in);
+        System.out.println("Please enter a sentence: ");
+        String sentence = Scanner.nextLine();
+
+
+
+        System.out.println("your sentence contains " + WP.CountWords(sentence) + " words.");
+        System.out.println("your sentence contains " + WP.CountLetters(sentence) + " letters.");
+        System.out.println("your sentence is " + WP.getlength(sentence) + " characters long.");
+    }
+}
