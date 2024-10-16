@@ -6,17 +6,16 @@ public class Main {
 
 
         Menu Mu = new Menu();
-        Mu.displayMenuOption(1);
-        Mu.displayMenuOption(2);
-        Mu.displayMenuOption(3);
-        Mu.displayMenuOption(4);
-        Mu.displayMenuOption(5);
-        Mu.displayMenuOption(6);
-
-
+        for (int i = 1; i < 7; i++) {
+            try {
+                Mu.displayMenuOption(i);
+            } 
+            catch (InvalidOptionException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
-
+}
 public class ArrayProcessor {
     int getArrayLength(Object [] a) {
         // terrible implementation of the code
