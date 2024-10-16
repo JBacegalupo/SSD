@@ -1,0 +1,56 @@
+public class Main {
+    public static void main(String[] args) throws InvalidOptionException {
+        ArrayProcessor ap = new ArrayProcessor();
+        int len = ap.getArrayLength(new String[] {"one", "two", "three"});
+        System.out.println("Array Length is " + len);
+
+
+        Menu Mu = new Menu();
+        Mu.displayMenuOption(1);
+        Mu.displayMenuOption(2);
+        Mu.displayMenuOption(3);
+        Mu.displayMenuOption(4);
+        Mu.displayMenuOption(5);
+        Mu.displayMenuOption(6);
+
+
+        }
+    }
+
+public class ArrayProcessor {
+    int getArrayLength(Object [] a) {
+        // terrible implementation of the code
+        int count = 0;
+        try {
+            while (true) {
+                Object t = a[count];
+                count++;
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            return count;
+        }
+    }
+    
+    
+}
+
+public class Menu {
+    void displayMenuOption(int opt) throws InvalidOptionException {
+        if (opt <1 || opt >3) {
+            throw new InvalidOptionException(opt + " is not a valid option");
+        }
+        else {
+            System.out.println("Menu Option " + opt + " is selected.");
+        }
+    }
+
+
+}
+
+public class InvalidOptionException extends Exception {
+    // detects an invalid option generated in Menu.Java
+    public InvalidOptionException(String message) {
+        super(message);
+    }
+}
