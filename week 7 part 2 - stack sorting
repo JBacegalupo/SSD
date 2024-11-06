@@ -1,0 +1,57 @@
+import java.util.Stack;
+
+public class NumberSorter {
+
+    void sort(int[] numbers, boolean ascending) {
+    Integer next;
+// The source stack, from which the numbers are popped
+        Stack<Integer> srcStack = new Stack<Integer>();
+
+// The dest stack, to which the numbers are pushed
+        Stack<Integer> destStack = new Stack<Integer>();
+
+// Add the initial array of numbers to the source stack.
+        for (int number : numbers)
+            srcStack.push(number);
+
+        while (srcStack.size() > 0) {
+            next = srcStack.pop();
+            while (destStack.size() > 0 && destStack.peek() > next) {
+                srcStack.push(destStack.pop());
+            }
+            destStack.push(next);
+        }
+        if (ascending) {
+            for (int number : destStack) {
+                System.out.print(number + " ");
+            }
+        }
+        else {
+            while (!destStack.isEmpty()) {
+                srcStack.push(destStack.pop());
+            }
+            for (int number : srcStack) {
+                System.out.print(number + " ");
+            }
+        }
+    }
+}
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        NumberSorter sorter = new NumberSorter();
+        sorter.sort(new int [] {1,9,2,3,10,8,12,1, 99, 2, 43, 68, 109, 0} , true);
+        System.out.println();
+        sorter.sort(new int [] {1,9,2,3,10,8,12,1, 99, 2, 43, 68, 109, 0} , false);
+        System.out.println();
+        sorter.sort(new int [] {1,2,3,4} , true);
+        System.out.println();
+        sorter.sort(new int [] {4,3,2,1}, false );
+        System.out.println();
+        }
+    }
+
+
+
