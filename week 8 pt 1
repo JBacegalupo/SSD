@@ -1,0 +1,54 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class EmailStore {
+    Set<String> emailAddresses = new HashSet<String>();
+
+
+    public Boolean addEmail(String email) {
+        if (emailAddresses.contains(email)) {
+            return false;
+        } else {
+            emailAddresses.add(email);
+            return true;
+        }
+    }
+    public Boolean hasEmail(String email) {
+        if (emailAddresses.contains(email)) {
+            return true;
+        } else
+            return false;
+    }
+
+    public void displayEmails() {
+        for (String email: emailAddresses) {
+            System.out.println(email);
+        }
+    }
+}
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        EmailStore emails = new EmailStore();
+        if (emails.addEmail("123@Test.com")) {
+            System.out.println("Email added");
+        } else {
+            System.out.println("Email already exists");
+        }
+        if (emails.addEmail("123@Test.com")) {
+            System.out.println("Email added");
+        } else {
+            System.out.println("Email already exists");
+        }
+        if (emails.hasEmail("123@Test.com")) {
+            System.out.println("Email is contained in list");
+        } else {
+            System.out.println("Email is not contained in list");
+        }
+        emails.addEmail("1234@test.com");
+        emails.addEmail("test@test.com");
+        emails.displayEmails();
+    }
+    }
