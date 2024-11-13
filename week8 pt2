@@ -1,0 +1,38 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class WordCounter {
+    private final Map<String, Integer> wordMap = new HashMap<String, Integer>();
+
+    public void addWord(String word) {
+        if (wordMap.containsKey(word)) {
+            wordMap.put(word , wordMap.get(word)+1);
+        } else {
+            wordMap.put(word,1);
+        }
+    }
+
+    public void addSentence(String sentence) {
+        String[] words = sentence.split(" ");
+        for (String word : words) {
+            addWord(word);
+        }
+    }
+
+    public void OutputResults() {
+        for (String word : wordMap.keySet()) {
+            System.out.println(word + " : " + wordMap.get(word));
+        }
+
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        WordCounter wc = new WordCounter();
+        wc.addSentence("This sentence has the word has in it twice");
+                wc.OutputResults();
+
+    }
+    }
+
