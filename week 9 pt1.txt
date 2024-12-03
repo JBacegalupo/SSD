@@ -1,0 +1,38 @@
+public class Main {
+    public static void main(String[] args) {
+        NumberChecker numChecker = new NumberChecker ();
+        int max = numChecker.findMax(new Integer[] {5,2,7,9,10,1,2});
+        System.out.println("Max number is "  + max);
+
+        NumberGrid numGrid = new NumberGrid();
+        numGrid.output(2);
+    }
+}
+public class NumberChecker {
+
+    public int findMax(Integer [] numbers) {
+        Integer max = 0;
+        for (int number : numbers) {
+            if (number > max) {
+                max = number;
+            }
+        }
+        return max;
+    }
+}
+
+
+
+public class NumberGrid {
+     void output(int range) {
+         for(int count=0; count < range; count++) {
+             for(int count2=0; count2 < range; count2++) {
+                 System.out.print("\t" + (count+1));
+             }
+             System.out.println();
+         }
+     }}
+
+
+
+
