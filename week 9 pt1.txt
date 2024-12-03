@@ -1,0 +1,163 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Person {
+        int height;
+        int age;
+        boolean gender;
+
+        public Person() {
+            this.height = 0;
+            this.age = 0;
+            this.gender = false;
+        }
+
+        public Person(int height, int age, boolean gender) {
+            this.height = height;
+            this.gender = gender;
+            this.age = age;
+        }
+
+
+
+        public void setHeight(int Height) {
+            this.height = Height;
+        }
+        public int getHeight() {
+            return height;
+        }
+        public void setAge(int Age) {
+            this.age = Age;
+        }
+        public int getAge() {
+            return age;
+        }
+        public void setGender(String Gender) {
+            if (Gender.equalsIgnoreCase("male"))
+                gender = false;
+            else if (Gender.equalsIgnoreCase("female"))
+                gender = true;
+
+            else
+                System.out.println("Gender undefined");
+
+        }
+
+        public String getGender() {
+            if (!gender)
+                return "Male";
+            else
+                return "Female";
+        }
+    public boolean getGenderBool() {
+        return gender;
+    }
+    @Override
+    public String toString() {
+        return ("age: " + age + " years; height: " + height + " cm; gender: " +getGender());
+    }
+
+    }
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class Cencus {
+     private List<Person> people = new ArrayList<Person>();
+
+     public void addPerson(Person Person) {
+        people.add(Person);
+     }
+    public void removePerson(Person person) {
+         people.remove(person);
+    }
+    public int countPeople() {
+         return people.size();
+    }
+    public int countMale() {
+         int counter = 0;
+         for (Person person : people) {
+             if (person.getGender().equalsIgnoreCase("Male"))
+                 counter += 1;
+
+         }
+         return counter;
+     }
+        public int countFemale() {
+            int counter = 0;
+            for (Person person : people) {
+                if (person.getGender().equalsIgnoreCase("Female"))
+                    counter += 1;
+
+            }
+            return counter;
+        }
+
+        public String toString() {
+        for (Person person : people) {
+            System.out.println(person.toString());
+
+        }
+
+            return null;
+        }
+
+    public void sortOnAge() {
+        Collections.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return Integer.compare(p1.getAge(), p2.getAge());
+            }
+
+    });
+        System.out.println(people);
+    }
+    public void sortOnHeight() {
+        Collections.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return Integer.compare(p1.getHeight(), p2.getHeight());
+            }
+
+        });
+        System.out.println(people);
+    }
+    public void sortOnGender() {
+        Collections.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return Boolean.compare(p1.getGenderBool(), p2.getGenderBool());
+            }
+
+        });
+        System.out.println(people);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cencus Cencus = new Cencus();
+        Person person1 = new Person(160, 20, false);
+        Person person2 = new Person(140, 32, true);
+        Person person3 = new Person(160, 17, false);
+        Person person4 = new Person(160, 69, true);
+        Person person5 = new Person(160, 25, true);
+        Person person6 = new Person(160, 27, true);
+        Cencus.addPerson(person1);
+        Cencus.addPerson(person2);
+        Cencus.addPerson(person3);
+        Cencus.addPerson(person4);
+        Cencus.addPerson(person5);
+        Cencus.removePerson(person4);
+        Cencus.addPerson(person6);
+        Cencus.removePerson(person5);
+        Cencus.toString();
+        Cencus.sortOnAge();
+        Cencus.sortOnHeight();
+        Cencus.sortOnGender();
+    }
+}
+
+
